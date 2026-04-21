@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <title>Slides</title>
+  <meta charset="utf-8">
+  <style>
+   @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+   @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+   body { 
+    font-family: 'Georgia';
+   }
+
+   h1, h2 {
+    font-family: 'Verdana';
+    font-weight: bold;
+   }
+
+   h1 {
+    font-size: 90px !important;
+   }
+
+   h2 {
+    font-size: 50px !important;
+   }
+  </style>
+ </head>
+ <body>
+  <textarea id="source">
+
+class: center, middle
+
+markdown-content
+
+  </textarea>
+  <script src="https://remarkjs.com/downloads/remark-latest.min.js">
+  </script>
+  <script>
+    // Load TTS voice once, rather than repeatedly within event listener
+    var selectedVoice;
+    window.speechSynthesis.addEventListener("voiceschanged", () => {
+      var voices = window.speechSynthesis.getVoices();
+      selectedVoice = voices.find(voice => 
+        voice.language ==='en-US' &&
+        voice.gender === 'female'
+      );
+      console.log(voices);
+    });
+
+    var slideshow = remark.create({ ratio: "20:9" });
+
+    slideshow.on('afterShowSlide', (slide) => {
+    // const currentSlideIndex = slide.getSlideIndex() + 1;
+    var content = String(slide.content);
+
+    // Convert Markdown to plaintext, to feed into TTS engine
+
+    // Replace headers with just header text
+    content = content.replace(/#+ (.+)/g, '$1');
+
+    // Get rid of leading > for subheaders lines
+    content = content.replace(/> (.+)/g, '$1');
+
+    // Replace links with just link text
+    content = content.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '$1');
+
+    // Speak content using TTS engine
+    var utterance = new SpeechSynthesisUtterance(content);
+    if(selectedVoice) {
+      utterance.voice = selectedVoice;
+    }
+    speechSynthesis.speak(utterance);
+    });
+  </script>
+ </body>
+</html>
