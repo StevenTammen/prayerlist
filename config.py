@@ -1,8 +1,8 @@
-prayer_lists_markdown_source_path = '/mnt/c/Drive/personal-organization/prayer-lists'
+prayer_lists_markdown_source_path = r'C:\Users\steve\Dropbox\prayer-lists'
 
-journal_dir_path = '/mnt/c/Drive/personal-organization/journal'
+journal_dir_path = r'C:\Users\steve\Dropbox\journal'
 
-daily_access_dir_path = '/mnt/c/Dropbox/_prayer-lists'
+daily_access_dir_path = r'C:\Users\steve\Dropbox\_prayer-lists'
 
 ignored_wikipedia_current_event_sections = ['Sports',
                                             'Arts and culture',

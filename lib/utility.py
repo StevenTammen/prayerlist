@@ -18,7 +18,10 @@ def get_html(url):
 			The HTML content as a string, or None if the request fails.
 		"""
 		try:
-				response = requests.get(url)
+				headers = {
+					'User-Agent': 'Prayerlist/1.0 (steven@steventammen.com)'
+				}
+				response = requests.get(url, headers=headers)
 				response.raise_for_status()	# Raise HTTPError for bad responses (4xx or 5xx)
 				return response.text
 		except requests.exceptions.RequestException as e:
