@@ -68,8 +68,8 @@ def write_prayer_list_to_slides(
 def build_slides_markdown_from_nested_dict(prayer_list_dict, repeat_headers_across_slides_instead_of_only_first_time, title):
     slides_markdown = f'## {title}'
     prayer_list = list(condense_nested_dict_into_flat_list(prayer_list_dict))
-    # Support six levels of header nesting, not that we will probably ever have that much
-    headers = ['', '', '', '', '', '']
+    # Support 12 levels of header nesting, not that we will probably ever have that much
+    headers = ['', '', '', '', '', '', '', '', '', '', '', '']
     for prayer in prayer_list:
         header_portion = ''
         content_portion = ''
